@@ -23,7 +23,7 @@ function Task({ match }) {
     const [description, setDescription] = useState();
     const [date, setDate] = useState();
     const [hour, setHour] = useState();
-    const [macaddress, setMacaddress] = useState('11:11:11:11:11:11');
+    const [macaddress, setMacaddress] = useState(isConnected);
 
     async function loadTaskDetails() {
         await api.get(`/task/${match.params.id}`).then((response) => {
@@ -51,7 +51,7 @@ function Task({ match }) {
         if (match.params.id) {
 
             let params = {
-                macaddress,
+                macaddress: isConnected,
                 type,
                 title,
                 done,
@@ -65,7 +65,7 @@ function Task({ match }) {
         } else {
 
             let params = {
-                macaddress,
+                macaddress: isConnected,
                 type,
                 title,
                 done,
